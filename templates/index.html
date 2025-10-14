@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DATA VISUALIZE</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <h1>DATA VISUALIZE</h1>
+
+  <div class="container">
+    <div class="upload-section">
+      <label for="folder">Chọn thư mục dữ liệu</label>
+      <input type="file" id="folder" webkitdirectory directory multiple>
+    </div>
+
+    <div class="table-container">
+      <div class="tab-header">
+        <div class="tab active" data-tab="A">A</div>
+        <div class="tab" data-tab="B">B</div>
+        <div class="tab" data-tab="C">C</div>
+      </div>
+      
+      <div id="A" class="tab-content active">
+        <button id="draw-bar-btn" class="chart-btn">Tạo biểu đồ cột</button>
+        <div id="bar-chart-area"></div>
+      </div>
+      <div id="B" class="tab-content">
+        <button id="draw-pie-btn" class="chart-btn">Tạo biểu đồ tròn</button>
+        <div id="pie-chart-area"></div>
+      </div>
+      <div id="C" class="tab-content">Nội dung tab C</div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

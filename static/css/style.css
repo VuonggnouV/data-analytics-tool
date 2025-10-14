@@ -1,0 +1,186 @@
+/* --- Biến màu cho giao diện Technical Dark Mode --- */
+:root {
+  --background-dark: #1a1d24;
+  --background-light: #2c303a;
+  --text-primary: #e0e6f1;
+  --text-secondary: #8a93a5;
+  --accent-glow: #00e5ff;
+  --border-color: #4a4f5a;
+  --warning-color: #ffc107; 
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 30px;
+  background-color: var(--background-dark);
+  color: var(--text-primary);
+}
+
+h1 {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 35px;
+  color: var(--accent-glow);
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  text-align: start;
+  text-shadow: 0 0 5px var(--accent-glow), 0 0 10px var(--accent-glow);
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 40px;
+}
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;      /* Tăng khoảng cách giữa 2 dòng */
+  width: 350px;     /* Đặt chiều rộng cố định cho cả khối */
+  color: var(--text-secondary);
+}
+
+.upload-section label {
+  font-family: 'Roboto Mono', monospace;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+}
+
+input[type="file"] {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+input[type="file"]::file-selector-button {
+  padding: 8px 15px;
+  margin-right: 15px;
+  background-color: transparent;
+  color: var(--accent-glow);
+  border-radius: 0;
+  cursor: pointer;
+  border: 2px solid var(--accent-glow);
+  transition: all 0.3s ease;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: var(--accent-glow);
+  color: var(--background-dark);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+
+.table-container {
+  flex-grow: 1;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-light);
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  overflow: auto;
+}
+
+.tab-header {
+  display: flex;
+  background-color: transparent;
+  border-bottom: 1px solid var(--border-color);
+  text-shadow: 0 0 10px var(--accent-glow), 0 3px 10px var(--accent-glow);
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 12px 0;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.25s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.tab:hover {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.tab.active {
+  color: var(--accent-glow);
+  font-weight: 700;
+  border-bottom: 3px solid var(--accent-glow);
+  background-color: #2f2f32;
+}
+
+.tab-content {
+  flex-grow: 1;
+  display: none;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.chart-btn {
+  padding: 10px 20px;
+  background-color: transparent;
+  color: var(--accent-glow);
+  border-radius: 0;
+  cursor: pointer;
+  min-width: 180px;
+  text-align: center;
+  font-weight: bold;
+  border: 2px solid var(--accent-glow);
+  transition: all 0.3s ease;
+}
+
+.chart-btn:hover {
+  background-color: var(--accent-glow);
+  color: var(--background-dark);
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.error-message {
+  color: var(--warning-color);
+  font-weight: bold;
+  margin-top: 15px;
+  text-shadow: 0 0 5px var(--warning-color);
+}
+
+
+img {
+  margin-top: 15px;
+  max-width: 100%;
+  border-radius: 0;
+  border: 1px solid var(--border-color);
+  background-color: #fff;
+}
+
+.skeleton {
+  width: 100%;
+  min-height: 250px;
+  margin-top: 15px;
+  background-color: var(--border-color);
+  background-image: linear-gradient(
+    90deg, 
+    var(--border-color) 0px, 
+    #5a5f6a 40px, 
+    var(--border-color) 80px
+  );
+  background-size: 600px;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -600px 0;
+  }
+  100% {
+    background-position: 600px 0;
+  }
+}

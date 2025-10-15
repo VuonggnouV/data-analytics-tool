@@ -16,26 +16,34 @@
 
   <div class="container">
     <div class="upload-section">
-      <label for="folder">Chọn thư mục dữ liệu</label>
-      <input type="file" id="folder" webkitdirectory directory multiple>
+      <label for="folder-input">Chọn thư mục ảnh</label>
+      <input type="file" id="folder-input" webkitdirectory directory multiple>
+
+      <label for="data-file-input">Chọn tệp dữ liệu (CSV/Excel)</label>
+      <input type="file" id="data-file-input" accept=".csv, .xlsx, .xls">
     </div>
 
     <div class="table-container">
       <div class="tab-header">
-        <div class="tab active" data-tab="A">A</div>
-        <div class="tab" data-tab="B">B</div>
-        <div class="tab" data-tab="C">C</div>
+        <div class="tab active" data-tab="A">Biểu đồ cột</div>
+        <div class="tab" data-tab="B">Biểu đồ tròn</div>
+        <div class="tab" data-tab="C">Phân tích EDA</div>
       </div>
       
       <div id="A" class="tab-content active">
         <button id="draw-bar-btn" class="chart-btn">Tạo biểu đồ cột</button>
         <div id="bar-chart-area"></div>
       </div>
+      
       <div id="B" class="tab-content">
         <button id="draw-pie-btn" class="chart-btn">Tạo biểu đồ tròn</button>
         <div id="pie-chart-area"></div>
       </div>
-      <div id="C" class="tab-content">Nội dung tab C</div>
+
+      <div id="C" class="tab-content">
+        <button id="analyze-btn" class="chart-btn">Bắt đầu phân tích</button>
+        <div id="eda-results-area"></div>
+      </div>
     </div>
   </div>
 

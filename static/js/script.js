@@ -72,7 +72,6 @@ document.getElementById("analyze-btn").addEventListener("click", async () => {
 
     const evtSource = new EventSource(`/analysis_stream/${startData.session_id}`);
     
-    // --- THAY ĐỔI 1: Thêm biến cờ để theo dõi token đầu tiên của AI
     let isFirstAiToken = true;
 
     evtSource.onmessage = function(event) {
@@ -93,7 +92,12 @@ document.getElementById("analyze-btn").addEventListener("click", async () => {
                 chartsArea.appendChild(chartContainer);
                 
                 const img = new Image();
-                img.src = `${data.url}?t=${new Date().getTime()}`;
+
+                let imageUrl = data.url;
+                if (!imageUrl.startsWith('data:')) {
+                    imageUrl += `?t=${new Date().getTime()}`;
+                }
+                img.src = imageUrl;
 
                 img.onload = function() {
                     setTimeout(() => {
@@ -103,12 +107,17 @@ document.getElementById("analyze-btn").addEventListener("click", async () => {
                         }
                     }, 300);
                 };
+                img.onerror = function() {
+                    // Xử lý nếu ảnh bị lỗi (hữu ích để debug)
+                    const containerToUpdate = document.getElementById(`${chartId}-container`);
+                    if(containerToUpdate) {
+                        containerToUpdate.innerHTML = `<h4>${data.name}</h4><p class="error-message">❌ Lỗi tải ảnh.</p>`;
+                    }
+                }
                 break;
-            
-            // --- THAY ĐỔI 2: Cập nhật logic cho 'start_ai' và 'ai_token'
+
             case 'start_ai':
                 aiSection.style.display = 'block';
-                // Hiển thị skeleton text
                 insightsArea.innerHTML = `
                     <div class="skeleton-text w-100"></div>
                     <div class="skeleton-text w-90"></div>
@@ -117,15 +126,12 @@ document.getElementById("analyze-btn").addEventListener("click", async () => {
                 break;
 
             case 'ai_token':
-                // Nếu là token đầu tiên, hãy xóa skeleton trước
                 if (isFirstAiToken) {
                     insightsArea.innerHTML = '';
                     isFirstAiToken = false;
                 }
-                // Sau đó bắt đầu nối chuỗi
                 insightsArea.innerHTML += data.content;
                 break;
-            // --- Kết thúc thay đổi ---
 
             case 'error':
                 logArea.innerHTML += `<p class="error-message">❌ Lỗi: ${data.message}</p>`;
